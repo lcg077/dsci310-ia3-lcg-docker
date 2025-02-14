@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  rstudio:
+    image: lcg/dsci310-rstudio # Use the built Docker image
+    build: .
+    container_name: rstudio_container
+    restart: unless-stopped
+    ports:
+      - "7777:8787" # Map port 8787 on host to 8787 in the container
+    environment:
+      - PASSWORD=pizza # Set RStudio login password
+    volumes:
+      - .:/home/rstudio/work # Mount current directory to RStudio's work directory
+    user: root # Ensure RStudio Server runs with proper privileges
